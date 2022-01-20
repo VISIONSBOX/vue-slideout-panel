@@ -1,5 +1,4 @@
-<template src="./template.html">
-</template>
+<template src="./template.html"> </template>
 
 <style lang="less" src="./styles.less"></style>
 
@@ -36,7 +35,9 @@ const vm = {
     panelTopVisibleZIndex() {
       const visiblePanels = this.panels.filter(panel => panel.visible);
 
-      return (visiblePanels.length > 0) ? Math.max(...visiblePanels.map(panel => panel.styles['z-index'])) : Z_INDEX_BASE;
+      return visiblePanels.length > 0
+        ? Math.max(...visiblePanels.map(panel => panel.styles['z-index']))
+        : Z_INDEX_BASE;
     }
   },
   methods: {
@@ -107,7 +108,7 @@ const vm = {
 
         if (!panel.height) {
           panel.styles.height = '900px';
-        } else if (!panel.height.endsWith || !panel.height.endsWith('px')) {
+        } else if (isNaN(panel.height)) {
           panel.styles.height = `${panel.height}px`;
         } else {
           panel.styles.height = panel.height;
@@ -117,7 +118,7 @@ const vm = {
 
         if (!panel.width) {
           panel.styles.width = '900px';
-        } else if (!panel.width.endsWith || !panel.width.endsWith('px')) {
+        } else if (isNaN(panel.height)) {
           panel.styles.width = `${panel.width}px`;
         } else {
           panel.styles.width = panel.width;
@@ -128,7 +129,9 @@ const vm = {
       panel.cssId = `slide-out-panel-${panel.id}`;
       panel.stylesheetId = `slide-out-panel-styles-${panel.id}`;
       panel.inlineComponent = !isString(panel.component);
-      panel.componentName = isString(panel.component) ? panel.component : panel.component.name; //tuck away the actual component name
+      panel.componentName = isString(panel.component)
+        ? panel.component
+        : panel.component.name; //tuck away the actual component name
 
       if (window.vue2PanelDebug) {
         console.log('panel', panel);
@@ -146,10 +149,9 @@ const vm = {
       this.closeCurrentPanel(panel);
     },
     onHideAllSideOutPanels() {
-      (this.panels || []).reverse()
-        .forEach(panel => {
-          this.closePanel(panel);
-        });
+      (this.panels || []).reverse().forEach(panel => {
+        this.closePanel(panel);
+      });
     },
     createPanelStylesheet(panel) {
       const head = document.head || document.getElementsByTagName('head')[0];
@@ -174,7 +176,9 @@ const vm = {
       head.appendChild(style);
     },
     removePanelStylesheet(panel) {
-      const stylesheetElements = document.querySelectorAll('link[rel=stylesheet]');
+      const stylesheetElements = document.querySelectorAll(
+        'link[rel=stylesheet]'
+      );
 
       const stylesheet = document.getElementById(panel.stylesheetId);
 

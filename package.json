@@ -1,12 +1,12 @@
 {
   "name": "vue2-slideout-panel",
-  "version": "2.14.0",
+  "version": "2.16.0",
   "description": "Lib for creating stackable panels using Vue JS",
   "main": "dist/vue-slideout-panel.js",
   "scripts": {
-    "dev": "NODE_ENV=development webpack-dev-server --config ./build/webpack.dev.js --open --inline --hot",
-    "build:debug": "NODE_ENV=debug webpack --config build/webpack.dist.js",
-    "build:release": "NODE_ENV=production webpack --config build/webpack.dist.js",
+    "dev": "set NODE_ENV=development && webpack-dev-server --config ./build/webpack.dev.js --open --inline --hot",
+    "build:debug": "set NODE_ENV=debug webpack --config build/webpack.dist.js",
+    "build:release": "set NODE_ENV=production webpack --config build/webpack.dist.js",
     "build:docs": "webpack --config build/webpack.docs.js",
     "build": "npm run build:debug && npm run build:release && npm run build:docs",
     "clean": "rimraf ./dist ./docs/docs.js"

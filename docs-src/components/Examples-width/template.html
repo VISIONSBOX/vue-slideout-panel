@@ -1,16 +1,30 @@
 <div id="examples">
-  <h2>Setting panel width</h2>
+  <h2>Setting panel width / height</h2>
   <p>
-    Open panels on the left, right, top or bottom side using the <code>openOn</code> option:
+    custom width / height, can be a number like 10 or a string like '10px'
   </p>
+
   <pre class="highlight">
 const panel = this.$showPanel({
     component: "panel-1",
-    width: {{ this.width }},
+    width: {{ !isNaN(this.width) ? this.width : '"' + this.width + '"' }},
+    openOn: "left",
     props: {}
 });</pre>
   <input class="form-control" type="text" v-model="width" />
-  <button @click.prevent="showPanel">
+  <button @click.prevent="showVerticalPanel">
+    Show Panel
+  </button>
+  <hr />
+  <pre class="highlight">
+const panel = this.$showPanel({
+    component: "panel-1",
+    height: {{ !isNaN(this.height) ? this.height : '"' + this.height + '"' }},
+    openOn: "top",
+    props: {}
+});</pre>
+  <input class="form-control" type="text" v-model="height" />
+  <button @click.prevent="showHorizontalPanel">
     Show Panel
   </button>
 </div>

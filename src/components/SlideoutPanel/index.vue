@@ -4,7 +4,6 @@
 
 <script>
 import Vue from 'vue';
-
 import eventBus from '../../eventBus';
 import domUtils from '../../utils/domUtils';
 
@@ -108,17 +107,16 @@ const vm = {
 
         if (!panel.height) {
           panel.styles.height = '900px';
-        } else if (isNaN(panel.height)) {
+        } else if (!isNaN(panel.height)) {
           panel.styles.height = `${panel.height}px`;
         } else {
           panel.styles.height = panel.height;
         }
       } else {
         panel.styles.height === '100%';
-
         if (!panel.width) {
           panel.styles.width = '900px';
-        } else if (isNaN(panel.height)) {
+        } else if (!isNaN(panel.width)) {
           panel.styles.width = `${panel.width}px`;
         } else {
           panel.styles.width = panel.width;
